@@ -19,5 +19,16 @@ Your Project is Available in `http://127.0.0.1:8000`
 
 ### Points
 * `@app.get("/")` :  this decorator tells FastAPI that the function below corresponds to the path `/` with an operation `GET`.
+### Code
+```
+from fastapi import FastAPI
 
+app = FastAPI()
+
+
+@app.get("/")
+async def root():
+    return {"message": "Server is Running! ... "}
+
+```
 ## [Path Parameters](https://fastapi.tiangolo.com/tutorial/path-params/)
