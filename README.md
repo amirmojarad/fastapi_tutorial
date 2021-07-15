@@ -20,7 +20,7 @@ Your Project is Available in `http://127.0.0.1:8000`
 ### Points
 * `@app.get("/")` :  this decorator tells FastAPI that the function below corresponds to the path `/` with an operation `GET`.
 ### Code
-```
+```python
 from fastapi import FastAPI
 
 app = FastAPI()
@@ -88,3 +88,35 @@ async def get_model(model_name: ModelName):
         message = "Have some residuals"
     return {"model_name": model_name, "message": message}
 ```
+
+## [Query Parametes](https://fastapi.tiangolo.com/tutorial/query-params/)
+
+### Send Data as Query Parameter
+` http://127.0.0.1:8000/items/?skip=0&limit=10 `
+
+starts with `?` and declare query name, separate with `&`
+
+send data with optional query parameter with essential query parameter
+
+`http://127.0.0.1:8000/foo/1?q=query_parameter`
+
+### Query parameter type conversion
+`http://127.0.0.1:8000/items/foo?short=1`
+`http://127.0.0.1:8000/items/foo?short=True`
+`http://127.0.0.1:8000/items/foo?short=true`
+`http://127.0.0.1:8000/items/foo?short=on`
+`http://127.0.0.1:8000/items/foo?short=yes`
+
+all above means `short = True`
+
+### Required Query Parameter
+When you declare a default value for non-path parameters (for now, we have only seen query parameters), then it is not required.
+
+If you don't want to add a specific value but just make it optional, set the default as `None`.
+
+But when you want to make a query parameter required, you can just not declare any default value:
+
+
+## [Request Body](https://fastapi.tiangolo.com/tutorial/body/)
+
+
