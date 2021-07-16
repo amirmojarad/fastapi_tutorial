@@ -188,21 +188,61 @@ async def update_item(item_id: int, item: Item, user: User):
     return results
 
 ```
+
 json body:
+
 ```json
 {
-    "item": {
-        "name": "Foo",
-        "description": "The pretender",
-        "price": 42.0,
-        "tax": 3.2
-    },
-    "user": {
-        "username": "dave",
-        "full_name": "Dave Grohl"
-    }
+  "item": {
+    "name": "Foo",
+    "description": "The pretender",
+    "price": 42.0,
+    "tax": 3.2
+  },
+  "user": {
+    "username": "dave",
+    "full_name": "Dave Grohl"
+  }
 }
 
 ```
 
+### Singular value in Body
+
+marked it in function with `Body(...)`
+
+```python
+@app.put("/items/{item_id}")
+async def update_item(
+        item_id: int, item: Item, user: User, importance: int = Body(...)
+):
+    pass
+```
+
+### Declare Query Params
+
+```python
+@app.put("/items/{item_id}")
+async def update_item(
+        *,
+        item_id: int,
+        item: Item,
+        user: User,
+        importance: int = Body(..., gt=0),
+        q: Optional[str] = None
+):
+    results = {"item_id": item_id, "item": item, "user": user, "importance": importance}
+    if q:
+        results.update({"q": q})
+    return results
+```
+
+### Use a Parameter as Embded
+
+```python
+item: Item = Body(..., embed=True)
+```
+
+## Body - Fields
+The same way you can declare additional validation and metadata in path operation function parameters with `Query`, `Path` and `Body`, you can declare validation and metadata inside of Pydantic models using Pydantic's `Field`.
 
