@@ -246,3 +246,16 @@ item: Item = Body(..., embed=True)
 ## Body - Fields
 The same way you can declare additional validation and metadata in path operation function parameters with `Query`, `Path` and `Body`, you can declare validation and metadata inside of Pydantic models using Pydantic's `Field`.
 
+
+## Security
+
+### OAuth2 
+OAuth2 is a specification that defines several ways to handle authentication and authorization.
+
+It is quite an extensive specification and covers several complex use cases.
+
+It includes ways to authenticate using a "third party".
+
+That's what all the systems with "login with Facebook, Google, Twitter, GitHub" use underneath.
+
+
